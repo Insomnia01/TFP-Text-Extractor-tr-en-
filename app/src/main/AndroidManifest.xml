@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CLIPBOARD_WRITE"/>
+    <uses-permission android:name="android.permission.CLIPBOARD_READ"/>
 
     <application
         android:allowBackup="true"

@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Matrix;
@@ -76,7 +78,7 @@ public class snapActivity extends AppCompatActivity {
     private ImageView imgView;
     private ImageButton btnRecapture;
     private ImageButton btnScan;
-    private ImageButton btnQuit;
+    private ImageButton btnCopy;
     private TextView txtResult;
     private TextView txtScanned;
     private LinearLayout linearLayout;
@@ -307,6 +309,7 @@ public class snapActivity extends AppCompatActivity {
                 mStillImageButton.setVisibility(View.GONE);
                 imgView.setVisibility(View.VISIBLE);
                 btnScan.setVisibility(View.VISIBLE);
+                btnRecapture.setVisibility(View.VISIBLE);
 
                 cropImage.launch("image/*");
             }
@@ -319,6 +322,7 @@ public class snapActivity extends AppCompatActivity {
                 imgView.setVisibility(View.GONE);
                 txtResult.setVisibility(View.VISIBLE);
                 linearLayout.setVisibility(View.VISIBLE);
+                btnCopy.setVisibility(View.VISIBLE);
 
                 Bitmap bitmap = ((BitmapDrawable) imgView.getDrawable()).getBitmap();
                 InputImage image = InputImage.fromBitmap(bitmap,0);
@@ -385,9 +389,21 @@ public class snapActivity extends AppCompatActivity {
                 mTextureView.setVisibility(View.VISIBLE);
                 imgView.setVisibility(View.GONE);
                 btnScan.setVisibility(View.GONE);
+                btnCopy.setVisibility(View.GONE);
                 txtResult.setVisibility(View.GONE);
                 txtResult.setText(null);
                 connectCamera();
+            }
+        });
+        btnCopy = (ImageButton) findViewById(R.id.btnCopy);
+        btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = txtResult.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Copied to clipboard.", text);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), "Copied to clipboard.", Toast.LENGTH_SHORT).show();
             }
         });
     }
