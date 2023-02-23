@@ -5,5 +5,6 @@ With Camera2 API and Firebase ML Kit, this app can extract text from image in se
 # Example Video
 
 
-https://user-images.githubusercontent.com/89778005/220864232-4b49e816-f0cc-420a-b17c-99ccab3dcc23.mp4
+https://user-images.githubusercontent.com/89778005/220875598-13575fca-bc4f-498c-8347-e175fc0154ee.mp4
+
 
